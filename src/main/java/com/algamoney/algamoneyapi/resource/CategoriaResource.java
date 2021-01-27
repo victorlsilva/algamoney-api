@@ -2,7 +2,6 @@ package com.algamoney.algamoneyapi.resource;
 
 import com.algamoney.algamoneyapi.model.Categoria;
 import com.algamoney.algamoneyapi.repository.CategoriaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -17,8 +16,11 @@ import java.util.Optional;
 @RequestMapping("/categorias")
 public class CategoriaResource {
 
-    @Autowired
     private CategoriaRepository categoriaRepository;
+
+    public CategoriaResource(CategoriaRepository categoriaRepository) {
+        this.categoriaRepository = categoriaRepository;
+    }
 
     @GetMapping
     public List<Categoria> listar(){
