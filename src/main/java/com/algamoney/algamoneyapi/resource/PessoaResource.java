@@ -33,14 +33,14 @@ public class PessoaResource {
     public List<Pessoa> listar(){return pessoaRepository.findAll();}
 
     @GetMapping("/{codigo}")
-    public ResponseEntity<Optional<Pessoa>> buscaPeloCodigo(@PathVariable Long codigo){
+    public ResponseEntity<Pessoa> buscaPeloCodigo(@PathVariable Long codigo){
 
         Optional<Pessoa> pessoaAchada = pessoaRepository.findById(codigo);
 
         if (pessoaAchada.isEmpty()){
             return ResponseEntity.notFound().build();
         } else {
-            return ResponseEntity.ok(pessoaAchada);
+            return ResponseEntity.ok(pessoaAchada.get());
         }
     }
 
