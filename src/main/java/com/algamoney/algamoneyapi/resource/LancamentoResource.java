@@ -3,6 +3,7 @@ package com.algamoney.algamoneyapi.resource;
 import com.algamoney.algamoneyapi.event.RecursoCriadoEvent;
 import com.algamoney.algamoneyapi.model.Lancamento;
 import com.algamoney.algamoneyapi.repository.LancamentoRepository;
+import com.algamoney.algamoneyapi.repository.filter.LancamentoFilter;
 import com.algamoney.algamoneyapi.service.LancamentoService;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
@@ -29,8 +30,8 @@ public class LancamentoResource {
     }
 
     @GetMapping
-    public List<Lancamento> listar(){
-        return lancamentoRepository.findAll();
+    public List<Lancamento> pesquisar(LancamentoFilter lancamentoFilter){
+        return lancamentoRepository.filtrar(lancamentoFilter);
     }
 
     @GetMapping("/{codigo}")
