@@ -25,7 +25,7 @@ public class LancamentoRepositoryImpl implements LancamentoRepositoryQuery{
     @Override
     public Page<Lancamento> filtrar(LancamentoFilter lancamentoFilter, Pageable pageable) {
         CriteriaBuilder builder = manager.getCriteriaBuilder();
-        CriteriaQuery criteria = builder.createQuery(Lancamento.class);
+        CriteriaQuery<Lancamento> criteria = builder.createQuery(Lancamento.class);
         Root<Lancamento> root = criteria.from(Lancamento.class);
 
         //Criar Restrições
