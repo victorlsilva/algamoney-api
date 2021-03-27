@@ -6,6 +6,7 @@ import com.algamoney.algamoneyapi.repository.CategoriaRepository;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -26,11 +27,13 @@ public class CategoriaResource {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')")
     public List<Categoria> listar(){
         return categoriaRepository.findAll();
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyAuthority('ROLE_CADASTRAR_CATEGORIA') and #oauth2.hasScope('write')")
     public ResponseEntity<Categoria> criar(@Valid @RequestBody Categoria categoria, HttpServletResponse res){
 
         Categoria categoriaSalva = categoriaRepository.save(categoria);
@@ -39,6 +42,7 @@ public class CategoriaResource {
     }
 
     @GetMapping("/{codigo}")
+    @PreAuthorize("hasAnyAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')")
     public ResponseEntity<Categoria> buscaPeloCodigo(@PathVariable Long codigo){
 
         Optional<Categoria> categoriaAchada = categoriaRepository.findById(codigo);
