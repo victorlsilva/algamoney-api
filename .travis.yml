@@ -3,8 +3,6 @@ language: java
 sudo: true
 dist: trusty
 jdk: oraclejdk11
-before_script:
-  - echo "USE mysql;nUPDATE user SET password=PASSWORD('') WHERE user='root';nFLUSH PRIVILEGES;n" | mysql -u root
 before_install:
   - chmod +x mvnw
 
