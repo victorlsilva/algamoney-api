@@ -1,7 +1,12 @@
+dist: bionic
 env: DB=mysql
 language: java
 sudo: true
 jdk: oraclejdk11
+services:
+  - mysql
 before_install:
   - chmod +x mvnw
-  - echo "USE mysql;\nUPDATE user SET password=PASSWORD('root') WHERE user='root';\nFLUSH PRIVILEGES;\n" | mysql -u root
+  - sudo mysql -e "use mysql; update user set authentication_string=PASSWORD('root') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
+  - sudo mysql_upgrade -u root -proot
+  - sudo service mysql restart
