@@ -12,7 +12,7 @@ CREATE TABLE lancamento(
     FOREIGN KEY (codigo_pessoa) REFERENCES pessoa(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, codigo_categoria, codigo_pessoa) VALUES ('Salário Mensal', '2021-06-10', null, 6500.00, 'Distribuição de lucros', 'RECEITA', 1, 9);
+INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, codigo_categoria, codigo_pessoa) VALUES ('Salário Mensal', '2021-06-10', null, 6500.00, 'Distribuição de lucros', 'RECEITA', 1, 1);
 INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, codigo_categoria, codigo_pessoa) VALUES ('Bahamas', '2021-06-17', '2021-06-17', 100.32, null, 'DESPESA', 2, 2);
 INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, codigo_categoria, codigo_pessoa) VALUES ('Top Club', '2021-02-04', null, 120, null, 'RECEITA', 3, 3);
 INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, codigo_categoria, codigo_pessoa) VALUES ('CEMIG', '2021-01-08', '2021-01-08', 110.44, 'Geração', 'RECEITA', 3, 4);
