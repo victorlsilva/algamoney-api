@@ -32,7 +32,13 @@ public class PessoaResource {
 
     @GetMapping
     @PreAuthorize("hasAnyAuthority('ROLE_PESQUISAR_PESSOA') and #oauth2.hasScope('read')")
-    public List<Pessoa> listar(){return pessoaRepository.findAll();}
+    public List<Pessoa> listar(@RequestParam Optional<String> nome){
+        if (nome.isEmpty()) {
+            return pessoaRepository.findAll();
+        }else {
+            return pessoaRepository.findByNomeStartingWith(nome.get());
+        }
+    }
 
     @GetMapping("/{codigo}")
     @PreAuthorize("hasAnyAuthority('ROLE_PESQUISAR_PESSOA') and #oauth2.hasScope('read')")
